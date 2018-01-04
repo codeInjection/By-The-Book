@@ -1,3 +1,116 @@
-.item img {
-    width: 30%;
+body{
+	font-family: 'Merriweather Sans', sans-serif;
+	
+}
+/* .navbar-default{
+	margin-bottom: none;
+	
+} */
+/* .glyphicon-book{
+	color: white;
+} */
+#navSearch{
+	border-radius: 10px 10px 10px 10px;
+	padding: 10px 50px 10px 20px;
+}
+.navbar-form a {
+	color: white;
+	text-decoration: none;
+	font-size: 36px;
+}
+/* .dropdown {
+	width: 120%;
+	margin:auto;
+} */
+
+
+/* @media (min-width: 768px){
+	.navbar {
+		border-radius: 0px;
+	}
+	.btn {
+		border-radius: 0px;
+	}
+} */
+
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+/* .navbar {
+	margin-bottom: 0px;
+	border: none;
+} */
+.form-group a {
+	padding-bottom: 10px;
+}
+
+/* .search{
+	color: white;
+	background: #db2134	;
+	padding: 20px;
+} */
+
+/* img {
+	width: 700px;
+	height: 1000px;
+} */
+.carousel{
+	margin: auto;
+	width: 80%;
+
+}
+.navbar-brand{	
+	font-size: 30px;
+}
+
+/* .navbar-brand {
+	background: rgb(221, 0, 23);
+	border-right-style: solid;
+	color: rgb(255, 255, 255);
+} */
+
+
+
+.black{
+	background: black;
+}
+.navbar {
+	width: 80%;
+	/*margin-right: 10%;*/
+	/* margin-left: 10%; */
+	margin: auto;
+	background: black;
+	color: white;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+	font-size: 2em;
+}
+
+/* #main-header {
+	width: 100%;
+	margin: auto;
+} */
+
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown-menu {
+	width: 100%;
+}
+
+.vert-separator {
+	border: 1px solid white;
+	height: 50px;
+}
+
+
+.categoryContainer {
+	margin: 0 auto;
+	
 }
