@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head  lang="en">
+<html lang="en">
+<head >
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>By the Books</title>
@@ -52,10 +52,10 @@
                                 </li>
                             </ul>
                             
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Login</a>
-                                </li>
+                            <div class="nav navbar-nav navbar-right">
+                                
+                                <a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Login</a>
+                                
                                 <div id="loginModal" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         
@@ -89,9 +89,9 @@
                                     </div>
                                 </div>
                                 
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#regModal"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Register</a>
-                                </li>
+                            
+                                <a href="#" data-toggle="modal" data-target="#regModal"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Register</a>
+                                
                                 
                                 <div id="regModal" class="modal fade " role="dialog">
                                     <div class="modal-dialog">
@@ -106,11 +106,11 @@
                                                 <form>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <label for="regEmail" name="regEmail">Email</label>
+                                                            <label for="regEmail">Email</label>
                                                             <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Email">
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <label for="regPass" name="regPass">Password</label>
+                                                            <label for="regPass" >Password</label>
                                                             <input type="password" class="form-control" id="regPass" name="regPass" placeholder="Password">
                                                         </div>
                                                     </div>
@@ -165,7 +165,7 @@
                                         
                                     </div>
                                 </div>
-                            </ul>
+                            </div>
                             
                         </div>
                     </div>
@@ -263,8 +263,9 @@
                     </div>
                     <div id="map-container" class="col-md-8"></div>
                     
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13503.90212323643!2d74.19247791534426!3d32.204890000000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3b491b5bb56ee82a!2sGIFT+University!5e0!3m2!1sen!2s!4v1515315218718" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </iframe>
+                    <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13503.90212323643!2d74.19247791534426!3d32.204890000000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3b491b5bb56ee82a!2sGIFT+University!5e0!3m2!1sen!2s!4v1515315218718" 
+                    width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div><!-- /map-outer -->
         </div> <!-- /row -->
     </div><!-- /container -->
@@ -277,18 +278,10 @@
                 <div class="col-md-4">
                     <h3 class="h3">by the book</h3>
                     <ul class="list-unstyled">
-                        <a href="../index.html">
-                            <li>Home</li>
-                        </a>
-                        <a href="about.html">
-                            <li>About Us</li>
-                        </a>
-                        <a href="contact.html">
-                            <li>Contact Us</li>
-                        </a>
-                        <a href="storelocation.html">
-                            <li class="active">Our Store Locations</li>
-                        </a>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li class="active"><a href="storelocation.html">Our Store Locations</a></li>
                     </ul>
                 </div>
                 

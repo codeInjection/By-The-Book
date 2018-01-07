@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head  lang="en">
+<html lang="en">
+<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Contact Us</title>
@@ -51,10 +51,10 @@
 								</li>
 							</ul>
 							
-							<ul class="nav navbar-nav navbar-right">
-								<li>
-									<a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Login</a>
-								</li>
+							<div class="nav navbar-nav navbar-right">
+								
+								<a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Login</a>
+								
 								<div id="loginModal" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 										
@@ -88,9 +88,9 @@
 									</div>
 								</div>
 								
-								<li>
-									<a href="#" data-toggle="modal" data-target="#regModal"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Register</a>
-								</li>
+								
+								<a href="#" data-toggle="modal" data-target="#regModal"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Register</a>
+								
 								
 								<div id="regModal" class="modal fade " role="dialog">
 									<div class="modal-dialog">
@@ -105,11 +105,11 @@
 												<form>
 													<div class="form-row">
 														<div class="form-group col-md-6">
-															<label for="regEmail" name="regEmail">Email</label>
+															<label for="regEmail">Email</label>
 															<input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Email">
 														</div>
 														<div class="form-group col-md-6">
-															<label for="regPass" name="regPass">Password</label>
+															<label for="regPass">Password</label>
 															<input type="password" class="form-control" id="regPass" name="regPass" placeholder="Password">
 														</div>
 													</div>
@@ -164,7 +164,7 @@
 										
 									</div>
 								</div>
-							</ul>
+							</div>
 							
 						</div>
 					</div>
@@ -291,7 +291,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	
 	
 	<footer class="footer">
@@ -300,18 +299,10 @@
 				<div class="col-md-4 pull-left">
 					<h3 class="h3">by the book</h3>
 					<ul class="list-unstyled">
-						<a href="../index.html">
-							<li>Home</li>
-						</a>
-						<a href="about.html">
-							<li>About Us</li>
-						</a>
-						<a  href="contact.html">
-							<li class="active">Contact Us</li>
-						</a>
-						<a href="storelocation.html">
-							<li>Our Store Locations</li>
-						</a>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="about.html">About Us</a></li>
+						<li class="active"><a href="contact.html">Contact Us</a></li>
+						<li><a href="storelocation.html">Our Store Locations</a></li>
 					</ul>
 				</div>
 				
