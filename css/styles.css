@@ -114,3 +114,67 @@ body{
 	margin: 0 auto;
 	
 }
+.Contact{
+	margin-top: 3%;
+}
+.input-group-lg{
+	margin-left: 10%;
+	width: 80%;
+
+}
+#email{
+	margin-left: 9%;
+	width: 82%;
+}
+.message{
+	margin-top: 2%;
+}
+
+#message{
+
+	margin-left: 10%;
+	
+}
+#form{
+	margin-left: 10%;
+	margin-top: 10%;
+}
+hr{
+	margin-right: 10%;
+	margin-left: 10%;
+}
+.a{
+	color: red;
+}
+.butn{
+	padding-left: 70%;
+}
+#img{
+	margin-top: 5%;
+	margin-left: 10%;
+}
+#im{
+		width: 88%;
+
+}
+#f{
+	margin-top: 3%;
+}
+p{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 2%;
+}
+.jumbotron{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 2%;
+}
+
+.p{
+	margin-left: 2px;	
+}
+img{
+	margin-right: 5%;
+	float: left;
+}

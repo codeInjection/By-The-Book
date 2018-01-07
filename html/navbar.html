@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head  lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>By the Books</title>
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="index_style.css"> -->
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+    
+	
+</head>
+<body>
+    
+    
+    <!--#include file="about.html" -->
+	 <!-- <nav class="navbar navbar-default navbar-inverse" > 
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#firstNavBar" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				
+			</div>
+            
+            
+			<div class="collapse navbar-collapse" id="firstNavBar">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="contact.html"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Contact Us</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="about.html"><i class="fa fa-users" aria-hidden="true"></i> About Us</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Our BookStores</a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="nav navbar-nav pull-right">
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#loginModal" class="navbar-btn"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Login</a>
+                            </li>
+                            <div id="loginModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    
+                                     
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Login</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="loginMail">Email address:</label>
+                                                    <input type="email" class="form-control" id="loginMail" name="loginMail">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="loginPwd">Password:</label>
+                                                    <input type="password" class="form-control" id="loginPwd" name="loginPwd">
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="loginRemember"> Remember me</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-default">Submit</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#regModal" class="navbar-btn"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Register</a>
+                            </li>
+                            
+                            <div id="regModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    
+                                    
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Register</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="regEmail" name="regEmail">Email</label>
+                                                        <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Email">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="regPass" name="regPass">Password</label>
+                                                        <input type="password" class="form-control" id="regPass" name="regPass" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="regAddress">Address</label>
+                                                    <input type="text" class="form-control" id="regAddress" name="regAddress" placeholder="1234 Main St">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="regAddress2">Address 2</label>
+                                                    <input type="text" class="form-control" id="regAddress2" name="regAddress2" placeholder="Apartment, studio, or floor">
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="regCity">City</label>
+                                                        <input type="text" class="form-control" id="regCity" name="regCity">
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="regState">State</label>
+                                                        <select id="regState" class="form-control" name="regState">
+                                                            <option disabled selected>Choose...</option>
+                                                            <option>Sindh</option>
+                                                            <option>Punjab</option>
+                                                            <option>Balochistan</option>
+                                                            <option>Khyber-Pakhtunkhwa</option>
+                                                            <option>Kashmir</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label for="regZip">Zip</label>
+                                                        <input type="text" class="form-control" id="regZip" name="regZip">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="regAgree" required>
+                                                        <label class="form-check-label" for="regAgree">
+                                                            I agree to the <a href="#">Privacy Policy</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </ul>
+                        
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-12 col-lg-12">
+                    <a href="index.html" class=" navbar-brand"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> by the book</a>
+                    
+                    <form class="navbar-form pull-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search" id="navSearch">
+                            <button type="submit" class="form-control btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+			</div>
+			
+			
+            
+            <div class="navbar navbar-default dropdownContainers">
+                
+                
+                <div class="col-md-1 hidden-xs hidden-sm reset btn-home">
+                    <a href="index.html" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+                </div>
+                
+                <div class="col-xs-12 col-md-5 reset">
+                    
+                    <div class="dropdown">
+                        
+                        <button class="btn btn-default dropdown-toggle btn-lg btn-block btn-info" type="button" id="categoriesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Categories
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-content" aria-labelledby="categoriesDropdown">
+                            <li><a href="#">Fiction</a></li>
+                            <li><a href="#">Science</a></li>
+                            <li><a href="#">Science Fiction</a></li>
+                            <li><a href="#">Self Help</a></li>
+                            <li><a href="#">Classics</a></li>
+                            <li><a href="#">Poetry</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-md-5 reset">
+                    <div class="dropdown">
+                        
+                        <button class="btn btn-default dropdown-toggle btn-lg btn-block btn-info" type="button" id="newBooksDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            New Books
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-content" aria-labelledby="newBooksDropdown">
+                            <li><a href="#">Fourth</a></li>
+                            <li><a href="#">Fifth</a></li>
+                            <li><a href="#">Third</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> 
+            
+        </div>
+	</nav>
+
+</div>
+
+
+<div id="best-sellers">
+    <nav class="navbar navbar-default navcolor">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav navbar-right"> 
+                    <li role="separator" class="white vert-separator"></li>						
+                    <li class="nav-items red"><a href="#" > Best Sellers </a></li>
+                    <li role="separator" class="white vert-separator hidden-xs"></li>
+                    <li  class="nav-items black"><a href="#"> View All </a></li>
+                    <li role="separator" class="white vert-separator"></li>
+                </ul>
+                 <a class="navbar-brand red" href="#"> Best Sellers </a>
+                    <a class="navbar-brand black" href="#"> View all </a> 
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="img7.jpg" alt="...">
+                        <div class="caption">
+                            <h3>Book Title</h3>
+                            <p>A not so long book description that'd satiate a person's yearning to click more.</p>
+                            <p>
+                                <p>
+                                    <a href="mockbook.html" class="btn btn-primary" role="button">Read More</a> 
+                                    <a href="#" class="btn btn-default" role="button">Price</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
+        
+    </body>
+    </html>

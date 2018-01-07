@@ -1,0 +1,115 @@
+body{
+	font-family: 'Merriweather Sans', sans-serif;
+	
+}
+
+#navSearch{
+	border-radius: 10px 10px 10px 10px;
+	padding: 10px 50px 10px 20px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+#bookCarousal {
+    width: 80%;
+    margin: 30px auto;
+}
+
+/* .navbar {
+	margin: auto;
+	background: black;
+	color: white;
+} */
+
+.navbar-default .navbar-brand {
+	color: white;
+	font-size: 2em;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown-menu {
+	width: 100%;
+}
+
+.vert-separator {
+	border: 1px solid white;
+	height: 50px;
+}
+
+
+.reset {
+    padding: 0;
+    margin: 0;
+}
+
+.reset-right {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.nav-breadcrumb {
+    margin-top: 20px;
+}
+
+
+.breadcrumb{
+    width: 100%;
+    padding-top: 15px;
+    margin: 0 0 0 15px;
+}
+
+/* .dropdown {
+	width: 120%;
+	margin:auto;
+} */
+
+
+/* @media (min-width: 768px){
+	.navbar {
+		border-radius: 0px;
+	}
+	.btn {
+		border-radius: 0px;
+	}
+} */
+
+/* .navbar-default{
+	margin-bottom: none;
+	
+} */
+/* .glyphicon-book{
+	color: white;
+} */
+
+/* .navbar {
+	margin-bottom: 0px;
+	border: none;
+} */
+
+
+/* .search{
+	color: white;
+	background: #db2134	;
+	padding: 20px;
+} */
+
+/* img {
+	width: 700px;
+	height: 1000px;
+} */
+
+/* .navbar-brand {
+	background: rgb(221, 0, 23);
+	border-right-style: solid;
+	color: rgb(255, 255, 255);
+} */
+
+/* #main-header {
+	width: 100%;
+	margin: auto;
+} */
