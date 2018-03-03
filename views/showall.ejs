@@ -1,0 +1,86 @@
+<%- include('partials/header'); %>
+<%- include('partials/navigation'); %>
+    
+<div class="container">
+<div class="jumbotron">
+    <div class="row" >
+        <div id="best-sellers">
+            <nav class="navbar navbar-default navbar-inverse ">
+                <div class="container">
+                    <div class="navbar-header">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li role="separator" class="vert-separator hidden-xs"></li>
+                            <li class="nav-items">
+                                <a href="#"> <%= navInfo.slice(-1)[0][0]  %> </a>
+                            </li>
+                            <li role="separator" class="vert-separator hidden-xs"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="row" style="display:flex; flex-wrap: wrap;">
+                <% if (navInfo.slice(-1)[0][1] = "showallauthors") { %>
+                <% authors.forEach((author) => { %>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="<%=author.author_img %>.jpg" alt="Image of  <%=author.name %>">
+                            <div class="caption">
+                                <h3>
+                                    <%= author.name  %>
+                                </h3>
+                                <p style="font-size: 14px">
+                                    <%= author.description.toString().substring(0, 100) %>
+                                </p>
+                                <p>
+                                    <a href="/author/<%= author.author_id %>" class="btn btn-primary" role="button">Read More</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                <% } else { %>
+                    <% books.forEach((book) => { %>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="thumbnail">
+                                <img src="<%=book.book_img %>.jpg" alt="Image of  <%=book.title %>">
+                                <div class="caption">
+                                    <h3>
+                                        <%= book.title  %>
+                                    </h3>
+                                    <p style="font-size: 14px">
+                                        <%= book.description.toString().substring(0, 100) %>
+                                    </p>
+                                    <p>
+                                        <a href="/book/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a>
+                                        <a href="#" class="btn btn-default" role="button">Price
+                                            <%= book.price %>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer'); %>

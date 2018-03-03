@@ -1,0 +1,75 @@
+<%- include('../partials/header'); %>
+<!-- <form action="/login" method="POST"> -->
+    
+    <nav class="navbar navbar-default hidden-xs nav-breadcrumb">
+            <div class="container">
+                <div class="navbar-header">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="login">Login</a></li>          
+                    </ol>
+                </div>
+            </div>
+        </nav>
+
+    <div class="container login">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="well well-sm">
+                    <form action="/login" method="POST">
+                        <fieldset>
+                            <legend class="text-left">Login</legend>
+
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">User Name</label>
+                                <div class="col-md-9">
+                                    <input id="loginemail" name="username" type="text" placeholder="Enter UserName" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <label class="col-md-3 control-label" for="password">Password</label>
+                            <div class="col-md-9">
+                                <input name="password" type="password" placeholder="Password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Form actions -->
+                        <div class="form-group">
+                            <div class="col-md-12 "id="SignIn">
+                            <button type="submit" class="btn btn-primary btn-lg " >Sign In</button>
+                            </div>
+                        </div>
+                                        <a href="/register" id="SignUp">Or Sign Up</a>
+                        </div>
+
+
+
+
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html> 

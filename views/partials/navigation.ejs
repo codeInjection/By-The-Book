@@ -186,12 +186,12 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-content" aria-labelledby="categoriesDropdown">
-                    <li><a href="#">Fiction</a></li>
-                    <li><a href="#">Science</a></li>
-                    <li><a href="#">Science Fiction</a></li>
-                    <li><a href="#">Self Help</a></li>
-                    <li><a href="#">Classics</a></li>
-                    <li><a href="#">Poetry</a></li>
+                    <li><a href="/category/programming">Programming</a></li>
+                    <li><a href="/category/javascript">Javascript</a></li>
+                    <li><a href="/category/sciencefiction">Science Fiction</a></li>
+                    <li><a href="/category/selfhelp#">Self Help</a></li>
+                    <li><a href="/category/classics">Classics</a></li>
+                    <li><a href="/category/poetry#">Poetry</a></li>
                 </ul>
                 
             </div>
@@ -201,15 +201,39 @@
             <div class="dropdown">
                 
                 <button class="btn btn-default dropdown-toggle btn-lg btn-block" type="button" id="newBooksDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    New Books
+                    Show All
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-content" aria-labelledby="newBooksDropdown">
-                    <li><a href="#">Fourth</a></li>
-                    <li><a href="#">Fifth</a></li>
-                    <li><a href="#">Third</a></li>
+                    <li><a href="/showallauthors">Show all authors</a></li>
+                    <li><a href="/showallbooks">Show all books</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div> <!-- Dropdown button end -->
+
+
+
+<!-- Start Breadcrumbs section -->
+<% if(navInfo.length > 1) { %>
+<nav class="navbar navbar-default nav-breadcrumb">
+    <div class="container">
+        <div class="navbar-header">
+            <ol class="breadcrumb">
+            <% navInfo.forEach(crumb => { %>
+                <li><a href="/<%=crumb[1]%>"><%=crumb[0]%></a></li>
+
+            <% }) %>
+		
+            </ol>
+        </div>
+    </div>
+</nav>
+<% } %>
+
+<!-- End breadcrumbs 
+
+                <li><a href="/">Home</a></li>
+                <li><a href="/<%=navInfo[1]%>"><%=navInfo[0]%></a></li>	
+-->

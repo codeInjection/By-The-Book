@@ -56,9 +56,9 @@
 			<div class="navbar-header">
 				<ul class="nav navbar-nav navbar-right"> 
 					<li role="separator" class="vert-separator hidden-xs"></li>						
-					<li class="nav-items"><a href="#" > Best Sellers </a></li>
+					<li class="nav-items"><a href="/book/bestsellers" > Best Sellers </a></li>
 					<li role="separator" class="vert-separator hidden-xs" ></li>
-					<li  class="nav-items"><a href="#"> View All </a></li>
+					<li  class="nav-items"><a href="/book/bestsellers"> View All </a></li>
 					<li role="separator" class="vert-separator hidden-xs"></li>
 				</ul>
 			</div>
@@ -93,9 +93,9 @@
 			<div class="navbar-header">
 				<ul class="nav navbar-nav navbar-right"> 
 					<li role="separator" class="vert-separator hidden-xs"></li>						
-					<li class="nav-items"><a href="#" > New Arrivals </a></li>
+					<li class="nav-items"><a href="/book/newarrivals" > New Arrivals </a></li>
 					<li role="separator" class="vert-separator hidden-xs"></li>
-					<li  class="nav-items"><a href="#"> View All </a></li>
+					<li  class="nav-items"><a href="/book/newarrivals"> View All </a></li>
 					<li role="separator" class="vert-separator hidden-xs"></li>
 				</ul>
 			</div>
@@ -112,7 +112,7 @@
 						<h3><%= book.title  %></h3>
 						<p><%= book.description.toString().substring(0, 100) %></p>
 						<p>
-							<a href="/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
+							<a href="/book/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
 							<a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
 						</p>
 					</div>
@@ -131,9 +131,9 @@
 			<div class="navbar-header">
 				<ul class="nav navbar-nav navbar-right"> 
 					<li role="separator" class="vert-separator hidden-xs"></li>						
-					<li class="nav-items"><a href="#" > New Arrivals </a></li>
+					<li class="nav-items"><a href="/book/toprated" > Top Rated </a></li>
 					<li role="separator" class="vert-separator hidden-xs"></li>
-					<li  class="nav-items"><a href="#"> View All </a></li>
+					<li  class="nav-items"><a href="/book/toprated"> View All </a></li>
 					<li role="separator" class="vert-separator hidden-xs"></li>
 				</ul>
 			</div>
@@ -150,7 +150,7 @@
 					<h3><%= book.title  %></h3>
 					<p><%= book.description.toString().substring(0, 100) %></p>
 					<p>
-						<a href="/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
+						<a href="/book/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
 						<a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
 					</p>
 				</div>

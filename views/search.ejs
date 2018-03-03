@@ -1,0 +1,28 @@
+<%- include('partials/header'); %>
+
+<div class="container">
+    <div class="row">
+        <% if(books.length > 0) { books.forEach((book) => { %>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="images/img7.jpg" alt="...">
+                    <div class="caption">
+                        <h3><%= book.title %></h3>
+                            <p><%= book.description %></p>
+                        <p>
+                            <a href="book" class="btn btn-primary" role="button">Read More</a> 
+                            <a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <% }) }  else { %>
+
+    <h1> No Book Found </h1>
+
+    <% } %>
+
+
+</div>
