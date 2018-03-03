@@ -75,7 +75,7 @@
 						<h3><%= book.title  %></h3>
 						<p><%= book.description.toString().substring(0, 100) %></p>
 						<p>
-							<a href="/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
+							<a href="/book/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
 							<a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
 						</p>
 					</div>
