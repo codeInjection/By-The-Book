@@ -1,7 +1,8 @@
 var express = require("express"),
     router = express.Router(),
     Book = require("../models/bookSchema"),
-    Author = require("../models/authorSchema");
+    Author = require("../models/authorSchema"),
+    query = "";
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -66,46 +67,33 @@ router.get("/showallauthors", (req, res, next) => {
         });
 });
 
-router.get("/book/bestsellers", function(req, res, next) {
-    Book.find({})
+router.get("/search:searchQuery", (req, res) => {
+    console.log("Query is: ", query);
+    const regex = new RegExp(escapeRegex(query.toString()), "gi");
+    Book.find({ title: regex })
         .then(books => {
-            res.render("showall", {
-                title: "Best Sellers | By The Book",
-                navInfo: [["Home", ""], ["Best Sellers", "book/bestsellers"]],
-                books: books
+            Author.find({ name: regex }).then(authors => {
+                res.render("search", {
+                    books: books,
+                    authors: authors,
+                    title: query,
+                    navInfo: [["Home", ""], [query, "search:" + query]]
+                });
             });
         })
         .catch(err => {
-            console.log("Error At BestSeller " + err);
+            console.log("Error At Search " + err);
         });
 });
 
-router.get("/book/newarrivals", function(req, res, next) {
-    Book.find({ publish_date: { $lte: new Date() - 20 } })
-        .then(books => {
-            res.render("showall", {
-                title: "New Arrivals | By The Book",
-                navInfo: [["Home", ""], ["New Arrivals", "book/newarrivals"]],
-                books: books
-            });
-        })
-        .catch(err => {
-            console.log("Error At BestSeller " + err);
-        });
-});
-
-router.get("/book/toprated", function(req, res, next) {
-    Book.find({ rating: { $gte: 4 } })
-        .then(books => {
-            res.render("showall", {
-                title: "Top Rated | By The Book",
-                navInfo: [["Home", ""], ["Top Rated", "book/toprated"]],
-                books: books
-            });
-        })
-        .catch(err => {
-            console.log("Error At BestSeller " + err);
-        });
+router.post("/search", (req, res) => {
+    query = req.body.search;
+    console.log("query is: " + query);
+    //Book.find({name: query}).then(books => {
+    res.redirect("/search=" + query);
+    // }).catch(err => {
+    //   console.log("Error At Search " + err);
+    // }) ;
 });
 
 //Show author's profile
@@ -113,70 +101,31 @@ router.get("/author/:author_id", function(req, res, next) {
     var author_id = req.params.author_id;
     Author.findOne({ author_id: author_id })
         .then(author => {
-            Book.find({ author: author_id }).then(books => {
-                res.render("authorprofile", {
-                    title: author.name + " | By The Book",
-                    author: author,
-                    books: books,
-                    navInfo: [
-                        ["Home", ""],
-                        [author.name, "author/" + author_id]
-                    ]
+            Book.find({ author: author_id })
+                .then(books => {
+                    res.render("authorprofile", {
+                        title: author.name + " | By The Book",
+                        author: author,
+                        books: books,
+                        navInfo: [
+                            ["Home", ""],
+                            [author.name, "author/" + author_id]
+                        ]
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
                 });
-            });
         })
         .catch(err => {
             console.log(err);
         });
-    // .populate("author_id")
-    // .exec((err, author) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.render("authorprofile", {
-    //             title: author.name + " | By The Book",
-    //             author: author,
-    //             navInfo: [
-    //                 ["Home", ""],
-    //                 [author.name, "author/" + author_id]
-    //             ]
-    //         });
-    //     }
-    // });
-    // .then(author => {
-    //     res.render("authorprofile", {
-    //         title: author.name + " | By The Book",
-    //         author: author,
-    //         navInfo: [["Home", ""], [author.name, "author/" + author_id]]
-    //     });
-    // })
-    // .catch(err => {
-    //     console.log("Error At author profile " + err);
-    // });
 });
 
-// Go to a custom book page
-router.get("/book/ISBN=:isbn13", function(req, res) {
-    //find the place with provided ID
-    var isbn13 = req.params.isbn13;
-    console.log("The id is this: " + isbn13);
-    Book.findOne({ ISBN13: isbn13 }, (err, foundBook) => {
-        console.log(isbn13 + " " + foundBook);
-        if (err) {
-            // console.log(err);
-            console.log("Error in showing at /:id .... " + err);
-        } else {
-            //render show view with that book
-            res.render("book", {
-                book: foundBook,
-                navInfo: [
-                    ["Home", ""],
-                    [foundBook.title, "book/ISBN=" + isbn13]
-                ],
-                title: foundBook.title + " | By The Book"
-            });
-        }
-    });
-});
+
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
 
 module.exports = router;

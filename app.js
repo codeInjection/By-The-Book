@@ -16,6 +16,7 @@ var seedDB = require("./seeds"),
 //Import all routes
 var index = require("./routes/index"),
     book = require("./routes/book"),
+    category = require("./routes/category"),
     users = require("./routes/users");
 
 var app = express();
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 app.use("/book", book);
+app.use("/category", category);
 app.use("/users", users);
 
 // catch 404 and forward to error handler
