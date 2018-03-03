@@ -66,62 +66,23 @@
 	</nav>
 	
 	<div class="container">
-		<div class="row">
+		<div class="row" style="display:flex; flex-wrap: wrap; ">
+		<% books.slice(0, 4).forEach(book => { %>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="thumbnail">
-					<img src="images/img7.jpg" alt="...">
+					<img src="<%=book.book_img %>.jpg" alt="Image of  <%=book.title %>">
 					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
+						<h3><%= book.title  %></h3>
+						<p><%= book.description.toString().substring(0, 100) %></p>
 						<p>
-							<a href="html/mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
+							<a href="/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
+							<a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
 						</p>
 					</div>
 				</div>
 			</div>
+		<% }) %>
 			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img6.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img5.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img4.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>	
 </div> <!--  best sellers div end -->
@@ -142,62 +103,23 @@
 	</nav>
 	
 	<div class="container">
-		<div class="row">
+		<div class="row" style="display:flex; flex-wrap: wrap; ">
+		<% books.slice(0, 4).forEach(book => { %>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="thumbnail">
-					<img src="images/img7.jpg" alt="...">
+					<img src="<%=book.book_img %>.jpg" alt="Image of  <%=book.title %>">
 					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
+						<h3><%= book.title  %></h3>
+						<p><%= book.description.toString().substring(0, 100) %></p>
 						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
+							<a href="/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
+							<a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
 						</p>
 					</div>
 				</div>
 			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img6.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img5.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img4.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
+		<% }) %>
+		
 		</div>
 	</div>
 </div>
@@ -219,64 +141,25 @@
 	</nav>
 	
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img7.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img6.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img5.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="images/img4.jpg" alt="...">
-					<div class="caption">
-						<h3>Book Title</h3>
-						<p>A not so long book description that'd satiate a person's yearning to click more.</p>
-						<p>
-							<a href="mockbook" class="btn btn-primary" role="button">Read More</a> 
-							<a href="#" class="btn btn-default" role="button">Price</a>
-						</p>
-					</div>
+	<div class="row" style="display:flex; flex-wrap: wrap; ">
+	<% books.slice(0, 4).forEach(book => { %>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img src="<%=book.book_img %>.jpg" alt="Image of  <%=book.title %>">
+				<div class="caption">
+					<h3><%= book.title  %></h3>
+					<p><%= book.description.toString().substring(0, 100) %></p>
+					<p>
+						<a href="/ISBN=<%= book.ISBN13 %>" class="btn btn-primary" role="button">Read More</a> 
+						<a href="#" class="btn btn-default" role="button">Price <%= book.price %></a>
+					</p>
 				</div>
 			</div>
 		</div>
+	<% }) %>
+	
 	</div>
+</div>
 </div>
 
 <%- include('partials/footer'); %>
