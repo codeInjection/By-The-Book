@@ -16,7 +16,8 @@ var bookData = [
         price: 500,
         website: "http://eloquentjavascript.net/",
         genre: ["Programming", "Javascript", "Computer Science"],
-        book_img: "/images/book1"
+        book_img: "/images/book1",
+        rating: 0.0
     },
     {
         ISBN13: "9781449331818",
@@ -33,7 +34,8 @@ var bookData = [
             "http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/",
 
         book_img: "/images/book2",
-        genre: ["Programming", "Javascript", "Computer Science"]
+        genre: ["Programming", "Javascript", "Computer Science"],
+        rating: 0.0
     },
     {
         ISBN13: "9781449365035",
@@ -49,7 +51,8 @@ var bookData = [
         website: "http://speakingjs.com/",
 
         book_img: "/images/book3",
-        genre: ["Programming", "Javascript", "Computer Science"]
+        genre: ["Programming", "Javascript", "Computer Science"],
+        rating: 0.0
     },
     {
         ISBN13: "9781491950296",
@@ -66,7 +69,8 @@ var bookData = [
             "http://chimera.labs.oreilly.com/books/1234000000262/index.html",
 
         book_img: "/images/book4",
-        genre: ["Programming", "Javascript", "Computer Science"]
+        genre: ["Programming", "Javascript", "Computer Science"],
+        rating: 0.0
     },
     {
         ISBN13: "9781593277574",
@@ -82,7 +86,8 @@ var bookData = [
         website: "https://leanpub.com/understandinges6/read",
 
         book_img: "/images/book5",
-        genre: ["Programming", "Javascript", "Computer Science"]
+        genre: ["Programming", "Javascript", "Computer Science"],
+        rating: 0.0
     },
     {
         ISBN13: "9781491904244",
@@ -99,7 +104,8 @@ var bookData = [
             "https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20&%20beyond",
 
         book_img: "/images/book6",
-        genre: ["Programming", "Javascript", "Computer Science"]
+        genre: ["Programming", "Javascript", "Computer Science"],
+        rating: 0.0
     },
     {
         ISBN13: "9781449325862",
@@ -115,7 +121,8 @@ var bookData = [
         website:
             "http://chimera.labs.oreilly.com/books/1230000000561/index.html",
         book_img: "/images/book7",
-        genre: ["Programming", "Git", "Computer Science"]
+        genre: ["Programming", "Git", "Computer Science"],
+        rating: 0.0
     },
     {
         ISBN13: "9781449337711",

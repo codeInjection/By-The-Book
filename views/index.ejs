@@ -17,19 +17,19 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="images/books1.jpg" alt="i" class="img">
+						<img src="images/carousal6.jpg" alt="i" class="img">
 					</div>
 					
 					<div class="item">
-						<img src="images/books2.jpeg" alt="img3" class="img">
+						<img src="images/carousal2.jpg" alt="img3" class="img">
 					</div>
 					
 					<div class="item">
-						<img src="images/books3.jpeg" alt="img3" class="img">
+						<img src="images/carousal3.jpeg" alt="img3" class="img">
 					</div>
 					
 					<div class="item">
-						<img src="images/book4.jpg" alt="img3" class="img">
+						<img src="images/carousal4.jpeg" alt="img3" class="img">
 					</div>
 				</div>
 				
@@ -104,7 +104,13 @@
 	
 	<div class="container">
 		<div class="row" style="display:flex; flex-wrap: wrap; ">
-		<% books.slice(0, 4).forEach(book => { %>
+		<% newArrivalBooks = [];
+		books.forEach(book => {
+			if(book.publish_date > new Date(new Date().setDate(new Date().getDate()-30)))
+				newArrivalBooks.push(book);
+			});%>
+
+		<% newArrivalBooks.slice(0, 4).forEach(book => { %>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="thumbnail">
 					<img src="<%=book.book_img %>.jpg" alt="Image of  <%=book.title %>">
@@ -139,10 +145,14 @@
 			</div>
 		</div>
 	</nav>
-	
+	<% topRatedBooks = [];
+		books.forEach(book => {
+			if(book.rating >= 4)
+			topRatedBooks.push(book);
+			});%>
 	<div class="container">
 	<div class="row" style="display:flex; flex-wrap: wrap; ">
-	<% books.slice(0, 4).forEach(book => { %>
+	<% topRatedBooks.slice(0, 4).forEach(book => { %>
 		<div class="col-xs-12 col-sm-6 col-md-3">
 			<div class="thumbnail">
 				<img src="<%=book.book_img %>.jpg" alt="Image of  <%=book.title %>">

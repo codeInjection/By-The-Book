@@ -1,22 +1,25 @@
 var express = require("express"),
     router = express.Router(),
+    passport = require("passport"),
+    User = require("../models/userSchema"),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
+    flash = require("connect-flash"),
     query = "";
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-    Book.find({}).then(books => {
-        res
-            .render("index", {
+    Book.find({})
+        .then(books => {
+            res.render("index", {
                 title: "By The Book | Home of the Book Readers",
                 navInfo: [["Home", ""]],
                 books: books
-            })
-            .catch(err => {
-                console.log(err);
             });
-    });
+        })
+        .catch(err => {
+            console.log(err);
+        });
 });
 
 router.get("/contact", function(req, res, next) {
@@ -126,6 +129,14 @@ router.get("/author/:author_id", function(req, res, next) {
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+function isLoggedIn(req, res, next) {
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated()) return next();
+
+    // if they aren't redirect them to the login
+    res.redirect("/login");
 }
 
 module.exports = router;

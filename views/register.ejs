@@ -1,77 +1,63 @@
-<%- include('../partials/header'); %>
+<%- include('partials/header'); %>
+<%- include('partials/navigation'); %>
 
-
-
-    
-    <nav class="navbar navbar-default hidden-xs nav-breadcrumb">
-            <div class="container">
-                <div class="navbar-header">
-                    <ol class="breadcrumb">
-                        <li><a href="/">Home</a></li>
-                        <li class="active"><a href="register">Sign Up</a></li>          
-                    </ol>
-                </div>
-            </div>
-        </nav>
-
-    <div class="container login">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="well well-sm">
-                    <form action="/register" method="POST">
-                        <fieldset>
-                            <legend class="text-left">Sign Up</legend>
-
-
-                            <!-- Email input-->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="email">User Name</label>
-                                <div class="col-md-9">
-                                    <input id="loginemail" name="username" type="text" placeholder="Enter a UserName" class="form-control">
-                                </div>
-                            </div>
-
-                            <!-- Password -->
-                            <label class="col-md-3 control-label" for="password">Password</label>
-                            <div class="col-md-9">
-                                <input name="password" type="password" placeholder="Password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Remember me
-                                        </label>
+        <div class="container login">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form action="/users/register" method="POST">
+                            <fieldset>
+                                <legend class="text-left">Sign Up</legend>
+                                <!-- Email input-->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="username">User Name</label>
+                                    <div class="col-md-9">
+                                        <input id="username" name="username" type="text" placeholder="Enter a UserName" class="form-control">
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Form actions -->
-                        <div class="form-group">
-                            <div class="col-md-12 "id="SignIn">
-                            <button type="submit" class="btn btn-primary btn-lg " >Sign Up</button>
-                            </div>
-                        </div>
-                                        <a href="/Login" id="SignUp">Or Sign In</a>
-                        </div>
 
+                                <!-- Password -->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="password">Password</label>
+                                    <div class="col-md-9">
+                                        <input name="password" type="password" placeholder="Password" class="form-control">
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="email">Email</label>
+                                    <div class="col-md-9">
+                                        <input id="email" name="email" type="text" placeholder="Enter Email" class="form-control">
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="address">Address</label>
+                                    <div class="col-md-9">
+                                        <input id="address" name="address" type="text" placeholder="Enter address" class="form-control">
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="about">About</label>
+                                    <div class="col-md-9">
+                                        <textarea id="about" name="about" type="text" placeholder="About You" class="form-control"></textarea>
+                                    </div>
+                                </div>
 
-                    </fieldset>
-                </form>
+                                <!-- Form actions -->
+                                <div class="form-group">
+                                    <div class="col-md-9 " id="SignIn">
+                                        <button type="submit" class="btn btn-primary btn-lg ">Sign Up</button>
+                                        <a href="/login" id="SignUp">Or Sign In</a>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
 
 
-
-
-
-
-
-
-</body>
-</html>
+        <%- include('partials/footer'); %>

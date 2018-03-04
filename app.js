@@ -5,13 +5,18 @@ var express = require("express"),
     logger = require("morgan"),
     cookieParser = require("cookie-parser"),
     bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
+    passport = require("passport"),
+    LocalStrategy = require("passport-local").Strategy,
+    mongoose = require("mongoose"),
+    session = require("express-session"),
+    flash = require("connect-flash");
 
 //Import all database schemas
 var seedDB = require("./seeds"),
     //User = require("./models/userSchema"),
     Book = require("./models/bookSchema"),
-    Author = require("./models/authorSchema");
+    Author = require("./models/authorSchema"),
+    User = require("./models/userSchema");
 
 //Import all routes
 var index = require("./routes/index"),
@@ -32,6 +37,29 @@ mongoose.connect("mongodb://localhost/bythebook").then(
 
 // seedDB();
 
+//PASSPORT CONFIGURATION
+app.use(
+    session({
+        secret: "Books are a creation of godly beings.",
+        resave: false,
+        saveUninitialized: false
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//middleware to pass the user info to all routes
+app.use(function(req, res, next) {
+    //make available inside our template
+    res.locals.currentUser = req.user;
+    //important: move to the code that handles the route
+    next();
+});
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -43,6 +71,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+    session({
+        secret: "keyboard cat",
+        cookie: { maxAge: 60000 }
+    })
+);
+app.use(flash());
+app.use(function(req, res, next) {
+    res.locals.success_messages = req.flash("success", "Success!");
+    res.locals.error_messages = req.flash("error", "Failed!");
+    next();
+});
+
+//middleware to pass the user info to all routes
+app.use(function(req, res, next) {
+	//make available inside our template
+	res.locals.currentUser = req.user;
+	//important: move to the code that handles the route 
+	next();		
+});
+
 
 app.use("/", index);
 app.use("/book", book);
