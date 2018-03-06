@@ -2,14 +2,17 @@
 var express = require("express"),
     path = require("path"),
     favicon = require("serve-favicon"),
-    logger = require("morgan"),
+    // logger = require("morgan"),
     cookieParser = require("cookie-parser"),
     bodyParser = require("body-parser"),
     passport = require("passport"),
     LocalStrategy = require("passport-local").Strategy,
     mongoose = require("mongoose"),
     session = require("express-session"),
-    flash = require("connect-flash");
+    flash = require("connect-flash"),
+    expressValidator = require("express-validator");
+
+require("./config/passport.js");
 
 //Import all database schemas
 var seedDB = require("./seeds"),
@@ -48,9 +51,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+//passport.use(new LocalStrategy(User.authenticate()));
+//passport.serializeUser(User.serializeUser());
+//passport.deserializeUser(User.deserializeUser());
 
 //middleware to pass the user info to all routes
 app.use(function(req, res, next) {
@@ -65,12 +68,13 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger("dev"));
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+// app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(expressValidator());
 app.use(
     session({
         secret: "keyboard cat",
@@ -86,12 +90,11 @@ app.use(function(req, res, next) {
 
 //middleware to pass the user info to all routes
 app.use(function(req, res, next) {
-	//make available inside our template
-	res.locals.currentUser = req.user;
-	//important: move to the code that handles the route 
-	next();		
+    //make available inside our template
+    res.locals.currentUser = req.user;
+    //important: move to the code that handles the route
+    next();
 });
-
 
 app.use("/", index);
 app.use("/book", book);

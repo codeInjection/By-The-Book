@@ -4,15 +4,38 @@ var express = require("express"),
     User = require("../models/userSchema"),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
-    flash = require("connect-flash");
+    Wishlist = require("../models/wishlistSchema"),
+    flash = require("connect-flash"),
+    middleware = require("../middleware/middle");
 
 /* GET users listing. */
-router.get("/profile/:profile", isLoggedIn,function(req, res, next) {
+router.get("/profile/:profile", middleware.isLoggedIn, function(
+    req,
+    res,
+    next
+) {
     var username = req.params.profile;
-    res.render("userprofile", {
-        title: username + " | By The Book",
-        navInfo: []
-    });
+    //Wishlist.find({})
+    //Book.find({ _id: { $in: req.user.wishlist } }, req, res)
+    // User.findOne({}).then(users => {console.log(users)})
+    User.findOne({ username: username })
+        .populate("wishlist readlist")
+        .exec((err, user) => {
+            // console.log(user.wishlist[0].title);
+            console.log(user);
+            if (err) {
+                console.log(err);
+            }
+            res.render("userprofile", {
+                title: username + " | By The Book",
+                wishlist: user.wishlist,
+                readlist: user.readlist,
+                navInfo: [
+                    ["Home", ""],
+                    ["Profile: " + username, "users/profile/" + username]
+                ]
+            });
+        });
 });
 
 router.get("/register", (req, res) => {
@@ -23,30 +46,37 @@ router.get("/register", (req, res) => {
 });
 
 //handle the sign-up logic
-router.post("/register", function(req, res) {
-    // res.send("Signing you up...");
-    var newUser = new User({
-        username: req.body.username,
-        about: req.body.about,
-        email: req.body.email,
-        address: req.body.address,
-        wishlist: [],
-        fav_authors: []
-    });
-    User.register(newUser, req.body.password, function(error, user) {
-        if (error) {
-            console.log(error);
-            return res.render("register", {
-                title: "Register | By The Book",
-                navInfo: [["Home", ""], ["Register", "register"]]
-            });
-        }
+router.post(
+    "/register",
+    passport.authenticate("local.register", {
+        failureRedirect: "/users/register",
+        failureFlash: true
+    }),
+    (req, res) => {
+        // // res.send("Signing you up...");
+        // var newUser = new User({
+        //     username: req.body.username,
+        //     about: req.body.about,
+        //     email: req.body.email,
+        //     address: req.body.address,
+        //     wishlist: [],
+        //     fav_authors: []
+        // });
+        // User.register(newUser, req.body.password, function(error, user) {
+        //     if (error) {
+        //         console.log(error);
+        //         return res.render("register", {
+        //             title: "Register | By The Book",
+        //             navInfo: [["Home", ""], ["Register", "register"]]
+        //         });
+        //     }
 
-        passport.authenticate("local")(req, res, function() {
-            res.redirect("/");
-        });
-    });
-});
+        // passport.authenticate("local")(req, res, function() {
+        //     res.redirect("/");
+        // });
+        res.redirect("/users/profile/" + req.user.username);
+    }
+);
 
 //logout logic
 router.get("/logout", function(req, res) {
@@ -62,19 +92,15 @@ router.get("/login", (req, res) => {
     });
 });
 
-router.post("/login", passport.authenticate("local"), (req, res) => {
-    res.redirect("/users/profile/" + req.user.username);
-});
-
-
-function isLoggedIn(req, res, next) {
-  // if user is authenticated in the session, carry on
-  if (req.isAuthenticated()) return next();
-
-  // if they aren't redirect them to the login
-  res.redirect("/login");
-}
-
-
+router.post(
+    "/login",
+    passport.authenticate("local.login", {
+        failureRedirect: "/users/login",
+        failureFlash: true
+    }),
+    (req, res) => {
+        res.redirect("/users/profile/" + req.user.username);
+    }
+);
 
 module.exports = router;

@@ -29,6 +29,14 @@ router.get("/contact", function(req, res, next) {
     });
 });
 
+router.post("/contact", (req, res, next) => {
+    var name = req.body.name,
+        email = req.body.email,
+        message = req.body.message;
+
+    res.redirect("/contact")
+});
+
 router.get("/about", function(req, res, next) {
     res.render("about", {
         title: "About Us | By The Book",

@@ -18,13 +18,13 @@
                 <div class="col-md-12 col-lg-12">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="contact"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Contact Us</a>
+                            <a href="/contact"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Contact Us</a>
                         </li>
                         <li>
-                            <a href="about"><i class="fa fa-users" aria-hidden="true"></i> About Us</a>
+                            <a href="/about"><i class="fa fa-users" aria-hidden="true"></i> About Us</a>
                         </li>
                         <li>
-                            <a href="storelocation"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Our BookStores</a>
+                            <a href="/storelocation"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Our BookStores</a>
                         </li>
                     </ul>
                     
@@ -38,8 +38,8 @@
                             <a href="/users/register"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Register</a>
                         </li>
                         <% } else { %>
-								<li><a href="/users/profile/<%= currentUser.username %>">Signed In As <%= currentUser.username %></a></li>
-								<li><a href="/logout">Logout</a></li>
+								<li><a href="/users/profile/<%= currentUser.username %>">Welcome <%= currentUser.username %></a></li>
+								<li><a href="/users/logout">Logout</a></li>
 						<% } %>
                     </ul>
                     
