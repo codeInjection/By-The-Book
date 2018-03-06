@@ -10,7 +10,8 @@ var express = require("express"),
     mongoose = require("mongoose"),
     session = require("express-session"),
     flash = require("connect-flash"),
-    expressValidator = require("express-validator");
+    expressValidator = require("express-validator"),
+    stripe = require("stripe")("sk_test_VBgS3yJD4R1RQHxHQ8CH1HGo");
 
 require("./config/passport.js");
 
@@ -29,6 +30,8 @@ var index = require("./routes/index"),
     author = require("./routes/author");
 
 var app = express();
+
+
 
 mongoose.connect("mongodb://localhost/bythebook").then(
     () => {

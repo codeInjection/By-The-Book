@@ -1,2 +1,2 @@
-
 $('[data-toggle="tooltip"]').tooltip();
+

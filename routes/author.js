@@ -5,6 +5,7 @@ var express = require("express"),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
     flash = require("connect-flash"),
+    helpers = require("../middleware/helpers"),
     middleware = require("../middleware/middle");
 
 //Show author's profile
@@ -53,7 +54,11 @@ router.get(
             )
                 .then(user => {
                     // console.log("User is " + user + " save id: " + author._id);
-                    user.fav_authors.push(author._id);
+                    if (JSON.stringify(user.fav_authors).includes(author._id)) {
+                        helpers.remove(user.fav_authors, author._id);
+                    } else {
+                        user.fav_authors.push(author._id);
+                    }
                     user.save();
                     // var user = req.user;
                     // user.validated = true;

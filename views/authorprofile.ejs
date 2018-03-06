@@ -11,19 +11,30 @@
 							<div class="thumbnail">
 								<img src="<%=author.author_img%>.jpg" alt="Image of  <%= author.name %>">
 							</div>
-							<a href="https://www.facebook.com/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
-							<a href="https://twitter.com/"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
-							<a href="https://plus.google.com/"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
-							<a href="#"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+							<a href="https://www.facebook.com/"><i id="social-fb" class="fab fa-facebook-square"></i></a>
+							<a href="https://twitter.com/"><i id="social-twt" class="fab fa-twitter-square"></i></a>
+							<a href="https://plus.google.com/"><i id="social-gp" class="fab fa-google-plus-square"></i></a>
+							<a href="#"><i id="social-em" class="fas fa-envelope-square"></i></a>
 						</div>
 						<div class="col-md-8">
 							<h1 id="Author">
 								<%= author.name %>
 							</h1>
-							<div class="btn-group wishlist">
+							<% var inFavAuthor = false; 
+							if(currentUser && (JSON.stringify(currentUser.fav_authors).includes(author._id))) {
+								inFavAuthor = true;
+							} 
+							%>
+							<div class="btn-group favauthor">
 							<a href="/author/<%=author.author_id%>/addfavoriteauthor">
 								<button type="button" class="btn btn-danger">
-									Add as Favorite Author
+								<% if(!inFavAuthor) { %>
+								Add as Favorite Author
+								<% } else { %>
+									Remove from Favorite Author
+
+									<%}%>
+									
 								</button>
 							</a>
 						</div>

@@ -1,18 +1,18 @@
-body{
-	font-family: 'Merriweather Sans', sans-serif;	
+body {
+    font-family: "Merriweather Sans", sans-serif;
 }
 
 .navbar {
-	border-radius: 0;
+    border-radius: 0;
 }
 
-#navSearch{
-	border-radius: 10px 10px 10px 10px;
-	padding: 10px 50px 10px 20px;
+#navSearch {
+    border-radius: 10px 10px 10px 10px;
+    padding: 10px 50px 10px 20px;
 }
 
 .navbar-default .navbar-nav > li > a {
-	color: white;
+    color: white;
 }
 
 #bookCarousal {
@@ -27,23 +27,22 @@ body{
 } */
 
 .navbar-default .navbar-brand {
-	color: white;
-	font-size: 2em;
+    color: white;
+    font-size: 2em;
 }
 
 .dropdown:hover .dropdown-content {
-	display: block;
+    display: block;
 }
 
 .dropdown-menu {
-	width: 100%;
+    width: 100%;
 }
 
 .vert-separator {
-	border: 1px solid white;
-	height: 50px;
+    border: 1px solid white;
+    height: 50px;
 }
-
 
 .reset {
     padding: 0;
@@ -59,35 +58,92 @@ body{
     margin-top: 20px;
 }
 
-
-.breadcrumb{
+.breadcrumb {
     width: 100%;
     padding-top: 15px;
     margin: 0 0 0 15px;
 }
 
-
-
 #createDate {
-	padding-top: 80px;
+    padding-top: 80px;
 }
 
 li.active {
-	color: red;
+    color: red;
 }
 
 .footer {
-
-	background: black;
-	padding-top: 20px;
-	color: white;
+    background: black;
+    padding-top: 20px;
+    color: white;
 }
 
+.stars-outer {
+    position: relative;
+    display: inline-block;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #ccc;
+}
+
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #f8ce0b;
+}
+
+#social-gp,
+#social-fb,
+#social-twt,
+#social-em {
+    font-size: 50px;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    /* margin: 0; */
+    padding-bottom: 20rem;
+    min-height: 100%;
+    /* font-family: "Helvetica Neue", Arial, sans-serif; */
+}
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	padding: 1rem;
+    /* background-color: #efefef; */
+    /* text-align: center; */
+}
 /* .dropdown {
 	width: 120%;
 	margin:auto;
 } */
-
 
 /* @media (min-width: 768px){
 	.navbar {
@@ -110,7 +166,6 @@ li.active {
 	margin-bottom: 0px;
 	border: none;
 } */
-
 
 /* .search{
 	color: white;

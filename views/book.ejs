@@ -18,18 +18,32 @@
 								</h2>
 							</div>
 							<div id="bookauthor">
-								<h3>By <a href="/author/<%=author.author_id%>"><%= author.name %></a> </h3>
+								<h3>By
+									<a href="/author/<%=author.author_id%>">
+										<%= author.name %>
+									</a>
+								</h3>
 							</div>
 							<div class="product-desc">
 								<%= book.description  %>
 							</div>
 							<div class="product-rating">
-								<i class="fa fa-star gold"></i>
-								<i class="fa fa-star gold"></i>
-								<i class="fa fa-star gold"></i>
-								<i class="fa fa-star gold"></i>
-								<i class="fa fa-star-o"></i>
-								<%= book.rating  %>
+									<% 
+									const rating = ratingAverage;
+									const starsTotal = 5;
+									const starPercentage = rating / starsTotal * 100;
+
+									// Round to nearest 10
+									const starPercentageRounded = `${Math.round(starPercentage / 10) *
+										10}%`;
+									if(!ratingAverage) {
+											ratingAverage = 0;
+										}
+										%>
+									<div class="stars-outer">
+											<div class="stars-inner" style="width: <%=starPercentageRounded%>"></div>
+									</div>
+								<%= Math.round(ratingAverage, -3) %>
 							</div>
 							<hr>
 							<div class="product-price">Rs.
@@ -58,37 +72,37 @@
 										} 
 										%>
 											<div class="btn-group wishlist">
-												
-													<a href="/book/ISBN/<%=book.ISBN13%>/addtowishlist" >
-													<button   type="button" class="btn btn-danger">
-													<% if(!inWishlist) { %>
-														Add to wishlist
-														<%} else { %>
-														Remove from wishlist
-														
-													<%}%>
+
+												<a href="/book/ISBN/<%=book.ISBN13%>/addtowishlist">
+													<button type="button" class="btn btn-danger">
+														<% if(!inWishlist) { %>
+															Add to wishlist
+															<%} else { %>
+																Remove from wishlist
+
+																<%}%>
 													</button>
-												</div>
+											</div>
 
 
-											
-										<% var inReadlist = false; 
+
+											<% var inReadlist = false; 
 										if(currentUser && (JSON.stringify(currentUser.readlist).includes(book._id))) {
 											inReadlist = true;
 										} 
 										%>
-										<div class="btn-group readlist">
-											<a href="/book/ISBN/<%=book.ISBN13%>/addtoreadlist">
-												<button title="Disabled" type="button" class="btn btn-primary">
-												<% if(!inReadlist) { %>
-												Add to readlist
-												<% } else { %>
-												Remove from readlist
-												
-												<%}%>
-												</button>
-											</a>
-										</div>
+												<div class="btn-group readlist">
+													<a href="/book/ISBN/<%=book.ISBN13%>/addtoreadlist">
+														<button type="button" class="btn btn-primary">
+															<% if(!inReadlist) { %>
+																Add to readlist
+																<% } else { %>
+																	Remove from readlist
+
+																	<%}%>
+														</button>
+													</a>
+												</div>
 						</div>
 					</div>
 				</div>
@@ -106,14 +120,14 @@
 								<a href="#service-two" data-toggle="tab">BOOK INFO</a>
 							</li>
 							<li>
-								<a href="#service-three" data-toggle="tab">REVIEWS</a>
+								<a href="#service-three" data-toggle="tab">REVIEWS (<%= reviews.length %>)</a>
 							</li>
 
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane fade in active" id="service-one">
 
-								<section class="container product-info">
+								<section class="container product-info bg-info">
 
 									<h4>Synopsis</h4>
 									<p>
@@ -122,65 +136,84 @@
 								</section>
 
 							</div>
-							<div class="tab-pane fade" id="service-two">
+							<div class="tab-pane fade " id="service-two">
 
-								<section class="container">
+								<section class="container bg-info ">
 									<h3>Book Information</h3>
-									<p>Pages: <%= book.pages %> </p>
-									<p>Publisher: <%= book.publisher %> </p>
-									<p>Publish Date: <%= book.publish_date %> </p>
-									<p>Genre: <%= book.genre %> </p>
+									<p>Pages:
+										<%= book.pages %>
+									</p>
+									<p>Publisher:
+										<%= book.publisher %>
+									</p>
+									<p>Publish Date:
+										<%= book.publish_date %>
+									</p>
+									<p>Genre:
+										<%= book.genre %>
+									</p>
 									<p>Condition: New</p>
 									<p>Type: Hardback</p>
 								</section>
 							</div>
 							<div class="tab-pane fade" id="service-three">
 								<section class="container">
-								<div style="width: 100%; margin: 25px auto;">
-								<form action="/book/ISBN/<%=book.ISBN13%>/addreview" method="POST">
-									<div class="form-group">
-										<textarea rows="5" cols="20" class="form-control" type="text" name="comment[text]" placeholder="text"> </textarea>
+									<div class="container">
+										<div class="row">
+											<h1 style="text-align: center; font-size: 15px;">Review
+												<%= book.title %>
+											</h1>
+											<div style="width: 100%; margin: 25px auto;">
+												<form action="/book/ISBN/<%=book.ISBN13%>/addreview" method="POST">
+													<div class="form-group">
+														<textarea rows="5" cols="20" class="form-control" type="text" name="reviewText" placeholder="text"> </textarea>
+													</div>
+													<div class="product-rating">
+														<label> Rating: <input type="number" value="1" placeholder="Rate 1 - 5" name="rating" min="1" max="5" step="0.1"> </label>
+													</div>
+													<div class="form-group">
+														<button class="btn btn-lg btn-primary btn-block">Submit</button>
+													</div>
+												</form>
+											</div>
+										</div>
 									</div>
-									<div class="form-group">
-										<button class="btn btn-lg btn-primary btn-block">Submit</button>
-									</div>
-								</form>
-							</div>
-									<div class="panel-group">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												Random User
-												<div class="product-rating">
-													<i class="fa fa-star gold"></i>
-													<i class="fa fa-star gold"></i>
-													<i class="fa fa-star gold"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
+									<% reviews.forEach(review => { %>
+										<div class="panel-group">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<%= review.user_id.username %>
+														<div class="product-rating">
+															<% 
+															const rating = review.rating;
+															const starsTotal = 5;
+															const starPercentage = rating / starsTotal * 100;
+
+															// Round to nearest 10
+															const starPercentageRounded = `${Math.round(starPercentage / 10) *
+																10}%`;
+															%>
+																<div class="stars-outer">
+																	<div class="stars-inner" style="width: <%=starPercentageRounded%>"></div>
+																</div>
+														</div>
+
+														<div class="pull-right"><a href="/book/ISBN/<%=review.book_id.ISBN13%>/deletereview" class="btn-danger btn btn-sm">Delete</a></div>
+												</div>
+												<div class="panel-body">
+													<p>
+														<%= review.text %>
+													</p>
+												</div>
+												<div class="panel-footer">
+													<a class="review-date" href="#">
+														<time datetime="2018-01-5T20:00">2018-01-5 20:00</time>
+													</a>
 												</div>
 											</div>
-											<div class="panel-body">
-											<div class="container">
-											<div class="row">
-												<h1 style="text-align: center; font-size: 15px;">Review <%= book.title %></h1>		
-		
-											</div>
-										</div>
-												<p>
-													A mock review on this amazing book defining all its amazing capabilites, highligting all its features that won't stop giving
-													joy. But for some reason will still rate it horribly. Here's some Lorem ipsum dolor sit amet consectetur adipisicing
-													elit. Ipsum, itaque labore iusto voluptatem pariatur omnis exercitationem dolor quos consectetur distinctio
-													quis earum aut praesentium culpa nihil quas repudiandae quasi officia.
-												</p>
-											</div>
-											<div class="panel-footer">
-												<a class="review-date" href="#">
-													<time datetime="2018-01-5T20:00">2018-01-5 20:00</time>
-												</a>
-											</div>
-										</div>
 
-									</div>
-
+										</div>
+										<% }); %>
 
 								</section>
 							</div>

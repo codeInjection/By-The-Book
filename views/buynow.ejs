@@ -1,0 +1,94 @@
+<%- include('partials/header'); %>
+    <%- include('partials/navigation'); %>
+
+
+
+        <div class="container">
+            <div class="row">
+                <h1 style="text-align: center;">Buying:
+                    <%= book.title %>
+                </h1>
+                <div style="width: 30%; margin: 25px auto;">
+                    <form action="/book/ISBN/<%= book.ISBN13 %>/buynow" method="POST">
+                        <div class="form-group">
+                            <label for="quantity">Quantity: </label>
+                            <input id="quantity" class="form-control" type="number" name="quantity" placeholder="Enter Quantity" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                                <label for="address">Address: </label>
+                            <input id="address" class="form-control" type="text" name="address" disabled placeholder="<%= currentUser.address %>">
+                        </div>
+                        <div class="form-group">
+                                <label for="quantity">Email: </label>
+                            <input id="email" class="form-control" type="email" name="email" disabled placeholder="<%= currentUser.email %>">
+                        </div>
+                        <div class="form-group">
+                            Total Price: Rs.
+                            <input type="number" class="totalPrice btn" value="<%= book.price%>" disabled>
+                        </div>
+
+                        <button id="customButton" class="btn btn-lg btn-primary btn-block">Submit</button>
+                        <!-- <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_HGd0nzdm9otpsuAWPvAhZfzZ" 
+                            data-amount=<%=book.price%> opened()
+                            data-name="By The Book"
+                            data-description=""
+                            data-image="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/VisualEditor_-_Icon_-_Open-book-2.svg/240px-VisualEditor_-_Icon_-_Open-book-2.svg.png"
+                            data-locale="auto"
+                            data-currency="PKR"
+                        </script> -->
+
+                </div>
+                </form>
+                <a href="/book/ISBN=<%= book.ISBN13 %>">Go Back</a>
+            </div>
+        </div>
+
+
+
+        </div>
+
+
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+
+        <script>
+
+
+            var bookQuantity = document.querySelector("input[name=quantity]");
+            var originalPrice = <%=book.price%>;
+            var totalPrice = document.querySelector(".totalPrice");
+            var price = 0;
+            bookQuantity.addEventListener("change", e => {
+                price = originalPrice * bookQuantity.value;
+                console.log(totalPrice.value + "  " + bookQuantity.value)
+                document.querySelector(".totalPrice").value = price;
+            });
+            var handler = StripeCheckout.configure({
+                key: 'pk_test_HGd0nzdm9otpsuAWPvAhZfzZ',
+                image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+                locale: 'auto',
+                token: function (token) {
+                    // You can access the token ID with `token.id`.
+                    // Get the token ID to your server-side code for use.
+                }
+            });
+
+            document.getElementById('customButton').addEventListener('click', function (e) {
+                // Open Checkout with further options:
+                handler.open({
+                    name: 'Demo Site',
+                    description: 'Buy The Book',
+                    name: "By The Book",
+
+                    currency: "PKR",
+                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/VisualEditor_-_Icon_-_Open-book-2.svg/1024px-VisualEditor_-_Icon_-_Open-book-2.svg.png",
+                    amount: price * 100
+                });
+                e.preventDefault();
+            });
+
+            // Close Checkout on page navigation:
+            window.addEventListener('popstate', function () {
+                handler.close();
+            });
+        </script>
+        <%- include('partials/footer'); %>

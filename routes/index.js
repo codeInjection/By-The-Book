@@ -5,6 +5,7 @@ var express = require("express"),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
     flash = require("connect-flash"),
+    helpers = require("../middleware/helpers"),
     query = "";
 
 /* GET home page. */
@@ -80,7 +81,7 @@ router.get("/showallauthors", (req, res, next) => {
 
 router.get("/search:searchQuery", (req, res) => {
     console.log("Query is: ", query);
-    const regex = new RegExp(escapeRegex(query.toString()), "gi");
+    const regex = new RegExp(helpers.escapeRegex(query.toString()), "gi");
     Book.find({ title: regex })
         .then(books => {
             Author.find({ name: regex }).then(authors => {
@@ -108,17 +109,5 @@ router.post("/search", (req, res) => {
 });
 
 
-
-function escapeRegex(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-}
-
-function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated()) return next();
-
-    // if they aren't redirect them to the login
-    res.redirect("/login");
-}
 
 module.exports = router;

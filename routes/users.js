@@ -6,6 +6,7 @@ var express = require("express"),
     Author = require("../models/authorSchema"),
     Review = require("../models/reviewSchema"),
     flash = require("connect-flash"),
+    helpers = require("../middleware/helpers"),
     middleware = require("../middleware/middle");
 
 /* GET users listing. */
@@ -54,27 +55,6 @@ router.post(
         failureFlash: true
     }),
     (req, res) => {
-        // // res.send("Signing you up...");
-        // var newUser = new User({
-        //     username: req.body.username,
-        //     about: req.body.about,
-        //     email: req.body.email,
-        //     address: req.body.address,
-        //     wishlist: [],
-        //     fav_authors: []
-        // });
-        // User.register(newUser, req.body.password, function(error, user) {
-        //     if (error) {
-        //         console.log(error);
-        //         return res.render("register", {
-        //             title: "Register | By The Book",
-        //             navInfo: [["Home", ""], ["Register", "register"]]
-        //         });
-        //     }
-
-        // passport.authenticate("local")(req, res, function() {
-        //     res.redirect("/");
-        // });
         res.redirect("/users/profile/" + req.user.username);
     }
 );

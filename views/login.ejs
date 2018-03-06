@@ -3,58 +3,61 @@
 
 
         <!-- <form action="/login" method="POST"> -->
-        
-            <h1>
-                <%=  message %>
-            </h1>
-            
-                <div class="container login">
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="well well-sm">
-                                <form action="/users/login" method="POST">
-                                    <fieldset>
-                                        <legend class="text-left">Login</legend>
+
+        <h1>
+            <%=  message %>
+        </h1>
+
+        <div class="container login">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="well well-sm">
+                        <form action="/users/login" method="POST">
+                            <fieldset>
+                                <legend class="text-left">Login</legend>
 
 
-                                        <!-- Email input-->
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="username">User Name</label>
-                                            <div class="col-md-9">
-                                                <input id="username" name="username" type="text" placeholder="Enter UserName" class="form-control">
-                                            </div>
+                                <!-- Email input-->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="username">User Name</label>
+                                    <div class="col-md-9">
+                                        <input id="username" name="username" type="text" placeholder="Enter UserName" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="password">Password</label>
+                                    <div class="col-md-9">
+                                        <input name="password" type="password" placeholder="Password" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Remember me
+                                            </label>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <!-- Password -->
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="password">Password</label>
-                                            <div class="col-md-9">
-                                                <input name="password" type="password" placeholder="Password" class="form-control">
-                                            </div>
-                                        </div>
+                                <!-- Form actions -->
+                                <div class="form-group">
+                                    <div class="col-md-12 " id="SignIn">
+                                        <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+                                        <a href="/users/register" id="SignUp">Or Sign Up</a>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-3 col-sm-10">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox"> Remember me
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Form actions -->
-                                        <div class="form-group">
-                                            <div class="col-md-12 " id="SignIn">
-                                                <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
-                                                <a href="/users/register" id="SignUp">Or Sign Up</a>
-                                            </div>
-
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
-                <%- include('partials/footer'); %>
+            </div>
+        </div>
+
+<!-- <div style="height: 20em">
+</div> -->
+        <%- include('partials/footer'); %>
