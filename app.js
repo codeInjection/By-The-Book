@@ -25,7 +25,8 @@ var seedDB = require("./seeds"),
 var index = require("./routes/index"),
     book = require("./routes/book"),
     category = require("./routes/category"),
-    users = require("./routes/users");
+    users = require("./routes/users"),
+    author = require("./routes/author");
 
 var app = express();
 
@@ -100,6 +101,7 @@ app.use("/", index);
 app.use("/book", book);
 app.use("/category", category);
 app.use("/users", users);
+app.use("/author", author);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

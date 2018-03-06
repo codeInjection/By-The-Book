@@ -107,32 +107,6 @@ router.post("/search", (req, res) => {
     // }) ;
 });
 
-//Show author's profile
-router.get("/author/:author_id", function(req, res, next) {
-    var author_id = req.params.author_id;
-    Author.findOne({ author_id: author_id })
-        .then(author => {
-            Book.find({ author: author_id })
-                .then(books => {
-                    res.render("authorprofile", {
-                        title: author.name + " | By The Book",
-                        author: author,
-                        books: books,
-                        navInfo: [
-                            ["Home", ""],
-                            [author.name, "author/" + author_id]
-                        ]
-                    });
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        })
-        .catch(err => {
-            console.log(err);
-        });
-});
-
 
 
 function escapeRegex(text) {

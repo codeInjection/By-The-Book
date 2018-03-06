@@ -4,7 +4,7 @@ var express = require("express"),
     User = require("../models/userSchema"),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
-    Wishlist = require("../models/wishlistSchema"),
+    Review = require("../models/reviewSchema"),
     flash = require("connect-flash"),
     middleware = require("../middleware/middle");
 
@@ -19,10 +19,10 @@ router.get("/profile/:profile", middleware.isLoggedIn, function(
     //Book.find({ _id: { $in: req.user.wishlist } }, req, res)
     // User.findOne({}).then(users => {console.log(users)})
     User.findOne({ username: username })
-        .populate("wishlist readlist")
+        .populate("wishlist readlist fav_authors")
         .exec((err, user) => {
             // console.log(user.wishlist[0].title);
-            console.log(user);
+            // console.log(user);
             if (err) {
                 console.log(err);
             }
@@ -30,6 +30,7 @@ router.get("/profile/:profile", middleware.isLoggedIn, function(
                 title: username + " | By The Book",
                 wishlist: user.wishlist,
                 readlist: user.readlist,
+                favAuthors: user.fav_authors,
                 navInfo: [
                     ["Home", ""],
                     ["Profile: " + username, "users/profile/" + username]

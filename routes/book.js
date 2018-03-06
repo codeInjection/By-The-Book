@@ -2,7 +2,7 @@ var express = require("express"),
     router = express.Router(),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
-    // Wishlist = require("../models/wishlistSchema"),
+    Review = require("../models/reviewSchema"),
     User = require("../models/userSchema"),
     middleware = require("../middleware/middle");
 
@@ -91,6 +91,7 @@ router.get("/ISBN/:isbn13/addtowishlist", middleware.isLoggedIn, function(
     var isbn13 = req.params.isbn13;
     //console.log("The id is this: " + isbn13);
     //console.log("User is " + req.user.username);
+
     Book.findOne({ ISBN13: isbn13 })
         .then(book => {
             //console.log(isbn13 + " " + foundBook);
@@ -101,8 +102,12 @@ router.get("/ISBN/:isbn13/addtowishlist", middleware.isLoggedIn, function(
                 // { new: true }
             )
                 .then(user => {
-                    console.log("User is " + user + " save id: " + book._id);
-                    user.wishlist.push(book._id);
+                    // console.log("User is " + user + " save id: " + book._id);
+                    if (JSON.stringify(user.wishlist).includes(book._id)) {
+                        remove(user.wishlist, book._id);
+                    } else {
+                        user.wishlist.push(book._id);
+                    }
                     user.save();
                     // var user = req.user;
                     // user.validated = true;
@@ -122,9 +127,8 @@ router.get("/ISBN/:isbn13/addtowishlist", middleware.isLoggedIn, function(
         });
 });
 
-
 //Add to readlist
-router.get("/ISBN/:isbn13/addtoreadlist", middleware.isLoggedIn, function(
+router.get("/ISBN/:isbn13/addreview", middleware.isLoggedIn, function(
     req,
     res
 ) {
@@ -143,13 +147,19 @@ router.get("/ISBN/:isbn13/addtoreadlist", middleware.isLoggedIn, function(
             )
                 .then(user => {
                     // console.log("User is " + user + " save id: " + book._id);
-                    user.readlist.push(book._id);
+                    if (JSON.stringify(user.readlist).includes(book._id)) {
+                        remove(user.readlist, book._id);
+                    } else {
+                        user.readlist.push(book._id);
+                    }
                     user.save();
                     // var user = req.user;
                     // user.validated = true;
                     // user.save(function(err) {
                     //     // updated the user record
                     // });
+
+
                     req.logIn(user, () => {
                         res.redirect("/book/ISBN=" + isbn13);
                     });
@@ -162,5 +172,17 @@ router.get("/ISBN/:isbn13/addtoreadlist", middleware.isLoggedIn, function(
             console.log(err);
         });
 });
+
+
+//Add Review
+
+
+function remove(array, element) {
+    const index = array.indexOf(element);
+    
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+}
 
 module.exports = router;
