@@ -190,14 +190,14 @@ var authorData = [
         author_id: 7,
         name: "Glenn Block",
         description: "Glenn is arguably one of the reasons why Microsoft is more open today. He was a catalyst for several open source efforts at Microsoft including ASP.NET Web API and Microsoft's support for Node.js in Azure. Since Microsoft he has led efforts in Splunk's developer platform and is now running product management for Webtask at Auth0.",
-        dob: "2014-04-07T00:00:00.000Z",
+        dob: "2018-02-07T00:00:00.000Z",
         author_img: "/images/author7"
     },
     {
         author_id: 8,
         name: "Axel Rauschmayer",
         description: "Dr. Axel Rauschmayer specializes in JavaScript and web development. He teaches classes for Ecmanauten, blogs at 2ality.com, holds talks and workshops at conferences and organizes the MunichJS user group. Axel has been programming since 1985 and developing web applications since 1995.",
-        dob: "2014-04-07T00:00:00.000Z",
+        dob: "2018-03-07T00:00:00.000Z",
         author_img: "/images/author8"
     }
 ];

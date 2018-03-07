@@ -40,17 +40,14 @@ router.get("/profile/:profile", middleware.isLoggedIn, function(
         });
 });
 
-router.get("/register", (req, res) => {
+router.route("/register")
+.get((req, res) => {
     res.render("register", {
         title: "Register",
         navInfo: [["Home", ""], ["Register", "register"]]
     });
-});
-
-//handle the sign-up logic
-router.post(
-    "/register",
-    passport.authenticate("local.register", {
+})
+.post(passport.authenticate("local.register", {
         failureRedirect: "/users/register",
         failureFlash: true
     }),
@@ -62,20 +59,19 @@ router.post(
 //logout logic
 router.get("/logout", function(req, res) {
     req.logout();
+    req.flash("logout", "Successfully Logged Out")
     res.redirect("/");
 });
 
-router.get("/login", (req, res) => {
+router.route("/login")
+.get((req, res) => {
     res.render("login", {
         title: "Login | By The Book",
         navInfo: [["Home", ""], ["Login", "login"]],
-        message: req.flash("message")
+        message: req.flash("error", "Error in Login!")
     });
-});
-
-router.post(
-    "/login",
-    passport.authenticate("local.login", {
+})
+.post(passport.authenticate("local.login", {
         failureRedirect: "/users/login",
         failureFlash: true
     }),

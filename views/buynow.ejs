@@ -48,7 +48,7 @@
         </div>
 
 
-        <script src="https://checkout.stripe.com/checkout.js"></script>
+        
 
         <script>
 
@@ -62,33 +62,33 @@
                 console.log(totalPrice.value + "  " + bookQuantity.value)
                 document.querySelector(".totalPrice").value = price;
             });
-            var handler = StripeCheckout.configure({
-                key: 'pk_test_HGd0nzdm9otpsuAWPvAhZfzZ',
-                image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-                locale: 'auto',
-                token: function (token) {
-                    // You can access the token ID with `token.id`.
-                    // Get the token ID to your server-side code for use.
-                }
-            });
+            // var handler = StripeCheckout.configure({
+            //     key: 'pk_test_HGd0nzdm9otpsuAWPvAhZfzZ',
+            //     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+            //     locale: 'auto',
+            //     token: function (token) {
+            //         // You can access the token ID with `token.id`.
+            //         // Get the token ID to your server-side code for use.
+            //     }
+            // });
 
-            document.getElementById('customButton').addEventListener('click', function (e) {
-                // Open Checkout with further options:
-                handler.open({
-                    name: 'Demo Site',
-                    description: 'Buy The Book',
-                    name: "By The Book",
+            // document.getElementById('customButton').addEventListener('click', function (e) {
+            //     // Open Checkout with further options:
+            //     handler.open({
+            //         name: 'Demo Site',
+            //         description: 'Buy The Book',
+            //         name: "By The Book",
 
-                    currency: "PKR",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/VisualEditor_-_Icon_-_Open-book-2.svg/1024px-VisualEditor_-_Icon_-_Open-book-2.svg.png",
-                    amount: price * 100
-                });
-                e.preventDefault();
-            });
+            //         currency: "PKR",
+            //         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/VisualEditor_-_Icon_-_Open-book-2.svg/1024px-VisualEditor_-_Icon_-_Open-book-2.svg.png",
+            //         amount: price * 100
+            //     });
+            //     e.preventDefault();
+            // });
 
-            // Close Checkout on page navigation:
-            window.addEventListener('popstate', function () {
-                handler.close();
-            });
+            // // Close Checkout on page navigation:
+            // window.addEventListener('popstate', function () {
+            //     handler.close();
+            // });
         </script>
         <%- include('partials/footer'); %>

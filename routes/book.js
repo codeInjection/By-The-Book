@@ -3,6 +3,7 @@ var express = require("express"),
     Book = require("../models/bookSchema"),
     Author = require("../models/authorSchema"),
     Review = require("../models/reviewSchema"),
+    Order = require("../models/orderSchema"),
     User = require("../models/userSchema"),
     helpers = require("../middleware/helpers"),
     middleware = require("../middleware/middle"),
@@ -55,7 +56,7 @@ router.get("/toprated", function(req, res, next) {
 });
 
 // Go to a custom book page
-router.get("/ISBN=:isbn13", function(req, res) {
+router.route("/ISBN=:isbn13").get((req, res) => {
     //find the place with provided ID
     var isbn13 = req.params.isbn13;
     // console.log("The id is this: " + isbn13);
@@ -78,6 +79,10 @@ router.get("/ISBN=:isbn13", function(req, res) {
                                 });
 
                                 let ratingAverage = ratingSum / reviews.length;
+                                if (ratingAverage) {
+                                    book.rating = ratingAverage;
+                                    book.save();
+                                }
 
                                 res.render("book", {
                                     book: book,
@@ -200,17 +205,27 @@ router.post("/ISBN/:isbn13/addreview", middleware.isLoggedIn, (req, res) => {
                         user_id: user._id,
                         book_id: book._id,
                         text: reviewText,
-                        rating: rating
+                        rating: rating,
+                        review_date: new Date()
                     };
-
-                    Review.create(reviewData)
-                        .then(review => {
-                            //console.log("Review Posted!");
-                            res.redirect("/book/ISBN=" + isbn13);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
+                    Review.find({ user_id: user._id, book_id: book._id }).then(
+                        userReviews => {
+                            console.log("Finding reviews!");
+                            if (userReviews.length > 0) {
+                                console.log("Already reviewed!");
+                                res.redirect("/book/ISBN=" + isbn13);
+                            } else {
+                                Review.create(reviewData)
+                                    .then(review => {
+                                        //console.log("Review Posted!");
+                                        res.redirect("/book/ISBN=" + isbn13);
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                    });
+                            }
+                        }
+                    );
                 })
                 .catch(err => {
                     console.log(err);
@@ -222,31 +237,26 @@ router.post("/ISBN/:isbn13/addreview", middleware.isLoggedIn, (req, res) => {
 });
 
 //Delete review
-router.delete(
+router.get(
     "/ISBN/:isbn13/deletereview",
     middleware.checkReviewOwnership,
     (req, res) => {
         var isbn13 = req.params.isbn13;
-
+        //console.log("At delete route!");
         Book.findOne({ ISBN13: isbn13 })
             .then(book => {
-                User.findOne({ username: req.user.username })
-                    .then(user => {
-                        Review.findByIdAndRemove({
-                            book_id: book._id,
-                            user_id: user._id
-                        })
-                            .then(() => {
-                                //console.log("Review Posted!");
-                                res.redirect("/book/ISBN=" + isbn13);
-                            })
-                            .catch(err => {
-                                console.log(err);
-                                res.redirect("back");
-                            });
+                //console.log("Inside Book!");
+                Review.findOneAndRemove({
+                    book_id: book._id,
+                    user_id: req.user._id
+                })
+                    .then(() => {
+                        //console.log("Review Deleted!");
+                        res.redirect("/book/ISBN=" + isbn13);
                     })
                     .catch(err => {
                         console.log(err);
+                        //res.redirect("back");
                     });
             })
             .catch(err => {
@@ -256,51 +266,63 @@ router.delete(
 );
 
 //Buy now!
-router.get("/ISBN/:isbn13/buynow", middleware.isLoggedIn, (req, res) => {
-    var isbn13 = req.params.isbn13;
+router
+    .route("/ISBN/:isbn13/buynow")
+    .get(middleware.isLoggedIn, (req, res) => {
+        var isbn13 = req.params.isbn13;
 
-    Book.findOne({ ISBN13: isbn13 }).then(book => {
-        res.render("buynow", {
-            title: "Checkout",
-            book: book,
-            navInfo: [["Home", ""], [book.title, "book/ISBN=" + isbn13]]
+        Book.findOne({ ISBN13: isbn13 }).then(book => {
+            res.render("buynow", {
+                title: "Checkout",
+                book: book,
+                navInfo: [["Home", ""], [book.title, "book/ISBN=" + isbn13]]
+            });
         });
+    })
+    .post(middleware.isLoggedIn, (req, res) => {
+        var isbn13 = req.params.isbn13;
+        var quantity = req.body.quantity;
+        var token = req.body.stripeToken;
+
+        Book.findOne({ ISBN13: isbn13 })
+            .then(book => {
+                if (book.quantity < quantity) {
+                    console.log("Not enough quantity!");
+                    res.redirect("/book/ISBN=" + isbn13);
+                } else {
+                    book.quantity -= quantity;
+                    book.save();
+                    orderData = {
+                        user_id: req.user._id,
+                        book_id: book._id,
+                        order_date: new Date(),
+                        quantity: quantity
+                    };
+                    Order.create(orderData);
+                    // Charge the user's card:
+                    // stripe.charges.create(
+                    //     {
+                    //         amount: book.price * 100 * quantity,
+                    //         currency: "PKR",
+                    //         description: "Example charge",
+                    //         source: token
+                    //     },
+                    //     function(err, charge) {
+                    //         // asynchronously called
+                    //         if (err) {
+                    //             console.log(err);
+                    //         }
+
+                    //         console.log(charge)
+                    //     }
+                    // );
+                    res.redirect("/book/ISBN=" + isbn13);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     });
-});
-
-//Buy now!
-router.post("/ISBN/:isbn13/buynow", middleware.isLoggedIn, (req, res) => {
-    var isbn13 = req.params.isbn13;
-    var quantity = req.body.quantity;
-    var token = req.body.stripeToken;
-    var amount =
-        // Charge the user's card:
-        stripe.charges.create(
-            {
-                amount: 999,
-                currency: "PKR",
-                description: "Example charge",
-                source: token
-            },
-            function(err, charge) {
-                // asynchronously called
-            }
-        );
-    Book.findOne({ ISBN13: isbn13 })
-        .then(book => {
-            if (book.quantity < quantity) {
-                console.log("Not enough quantity!");
-                res.redirect("/book/ISBN=" + isbn13);
-            } else {
-                book.quantity -= quantity;
-                book.save();
-                res.redirect("/book/ISBN=" + isbn13);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
-});
 
 //helper functions
 

@@ -49,18 +49,19 @@
 							<div class="product-price">Rs.
 								<%= book.price  %>
 							</div>
-							<% if(book.quantity > 0) { %>
+							<% if(book.quantity > 0) { var quantityZero = ""%>
 								<div class="product-stock text-success">In Stock</div>
 
-								<% }  else { %>
+								<% }  else { var quantityZero = "disabled"%>
 
 									<div class="product-stock text-danger">Out of Stock</div>
 									<% } %>
 
 										<hr>
+
 										<div class="btn-group cart">
 											<a href="/book/ISBN/<%=book.ISBN13%>/buynow">
-												<button type="button" class="btn btn-success">
+												<button type="button" class="btn btn-success" <%=quantityZero%>>
 													Buy now
 												</button>
 											</a>
@@ -197,8 +198,9 @@
 																	<div class="stars-inner" style="width: <%=starPercentageRounded%>"></div>
 																</div>
 														</div>
-
-														<div class="pull-right"><a href="/book/ISBN/<%=review.book_id.ISBN13%>/deletereview" class="btn-danger btn btn-sm">Delete</a></div>
+														<% if(currentUser && currentUser.username === review.user_id.username) {  %>
+															<div class="pull-right"><a href="/book/ISBN/<%=book.ISBN13%>/deletereview" class="btn-danger btn btn-sm">Delete</a></div>
+															<% } %>
 												</div>
 												<div class="panel-body">
 													<p>
@@ -207,7 +209,7 @@
 												</div>
 												<div class="panel-footer">
 													<a class="review-date" href="#">
-														<time datetime="2018-01-5T20:00">2018-01-5 20:00</time>
+														<time class="timeago" datetime="<%=review.review_date.toISOString().toLocaleString() %>"><%= review.review_date.toISOString().toLocaleString() %> </time> 
 													</a>
 												</div>
 											</div>

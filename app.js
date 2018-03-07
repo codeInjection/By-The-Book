@@ -79,19 +79,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(expressValidator());
-app.use(
-    session({
-        secret: "keyboard cat",
-        cookie: { maxAge: 60000 }
-    })
-);
-app.use(flash());
-app.use(function(req, res, next) {
-    res.locals.success_messages = req.flash("success", "Success!");
-    res.locals.error_messages = req.flash("error", "Failed!");
-    next();
-});
 
+
+app.use(flash());
 //middleware to pass the user info to all routes
 app.use(function(req, res, next) {
     //make available inside our template

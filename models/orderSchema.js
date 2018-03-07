@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 
-var reviewSchema = new mongoose.Schema({
-    text: String,
+var orderSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -10,11 +9,11 @@ var reviewSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Book"
     },
-    rating: Number,
-    review_date: {
+    order_date: {
         type: Date,
         default: Date.now
-    }
+    },
+    quantity: Number
 });
 
-module.exports = mongoose.model("Review", reviewSchema);
+module.exports = mongoose.model("Order", orderSchema);

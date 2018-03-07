@@ -19,22 +19,25 @@ middleware.isLoggedIn = (req, res, next) => {
 
 middleware.checkReviewOwnership = (req, res, next) => {
     //is the user logged in? - ONLY logged in users can go ahead
+
     if (req.isAuthenticated()) {
-		Book.findOne({ISBN13: req.params.isbn13}).then(book => {
-			Review.findOne({ ISBN13: req.params.isbn13 })
-            .then(book => {
-                if (review.user_id.equals(req.user._id)) {
-                    next();
-                }
-            })
-            .catch(err => {
-                res.redirect("back");
-            });
-		})
-        
+        //console.log("Authenticated!")
+        //console.log(req.params.isbn13)
+        Book.findOne({ ISBN13: req.params.isbn13 }).then(book => {
+            Review.findOne({ book_id: book._id })
+                .then(review => {
+                    // console.log(review.user_id + "  " + req.user._id);
+                    if (review.user_id.equals(req.user._id)) {
+                        return next();
+                    }
+                })
+                .catch(err => {
+                    res.redirect("/");
+                });
+        });
     } else {
         //otherise redirect the user back to his previous page
-        res.redirect("back");
+        res.redirect("/users/login");
     }
 };
 
