@@ -31,9 +31,9 @@ var index = require("./routes/index"),
 
 var app = express();
 
+var url = process.env.MONGOLAB_URI;
 
-
-mongoose.connect("mongodb://localhost/bythebook").then(
+mongoose.connect(url).then(
     () => {
         console.log("Mongoose Connection Successful");
     },
