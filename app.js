@@ -42,7 +42,7 @@ mongoose.connect(url).then(
     }
 );
 
-seedDB();
+// seedDB();
 
 //PASSPORT CONFIGURATION
 app.use(
